@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+<head><title>Redirecting...</title></head>
+<body>
+<script>
+  const params = new URLSearchParams(window.location.search);
+  const code = params.get('code');
+  const state = params.get('state');
+  if (code && window.opener) {
+    window.opener.postMessage({ code: code, state: state }, '*');
+    window.close();
+  } else {
+    document.body.innerHTML = 'Authorization complete. You can close this window.';
+  }
+</script>
+</body>
+</html>
